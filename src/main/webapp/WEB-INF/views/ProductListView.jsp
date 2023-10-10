@@ -35,8 +35,9 @@
                     <td>${product.code}</td>
                     <td>${product.name}</td>
                     <td>${product.price}</td>
-                    <td><a href="editProduct?code=${product.code}">Edit</a></td>
-                    <td><a href="editProduct?code=${product.code}" onclick="return confirm('Ban co chac muon xoa san pham nay khong ?')">Delete</a></td>
+                    <!--dung the a goi servlet thi se den doGet-->
+                    <td><a href="editProduct?code=${product.code}">Edit</a></td> 
+                    <td><a href="deleteProduct?code=${product.code}" onclick="return confirm('Ban co chac muon xoa san pham nay khong ?')">Delete</a></td>
                   
                 </tr>
 

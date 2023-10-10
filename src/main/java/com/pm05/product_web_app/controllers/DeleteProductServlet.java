@@ -1,8 +1,12 @@
 package com.pm05.product_web_app.controllers;
 
 import java.io.IOException;
+import java.sql.Connection;
 
-import jakarta.servlet.RequestDispatcher;
+
+import com.pm05.product_web_app.models.db.DBCrud;
+import com.pm05.product_web_app.models.db.MySQLConnector;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,8 +17,15 @@ public class DeleteProductServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/DeleteProductView.jsp") ;
-        requestDispatcher.forward(req, resp);
+       //get code from jsp
+        String code = req.getParameter("code");
+        //pass code vao db
+        Connection conn = MySQLConnector.getMySQLConnection();
+
+        //delete
+        DBCrud.deleteProduct(conn, code);
+        //redirect
+        resp.sendRedirect(req.getContextPath()+"/productList");
     }
 
     @Override

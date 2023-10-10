@@ -83,11 +83,11 @@ public class DBCrud {
 
 
     }
-    public static void deleteProduct(Connection conn, Product product){
+    public static void deleteProduct(Connection conn, String code){
         String sql="delete from product where code=?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, "code");
+            ps.setString(1, code);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
